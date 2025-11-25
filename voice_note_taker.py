@@ -10,29 +10,29 @@ def take_voice_note():
     recognizer = sr.Recognizer()
 
     with sr.Microphone() as source:
-        print("\n🎤 Listening... Speak now.")
+        print("\n Listening... Speak now.")
         recognizer.adjust_for_ambient_noise(source)
         audio = recognizer.listen(source)
 
     try:
-        print("🔄 Converting speech to text (offline)...")
+        print(" Converting speech to text (offline)...")
         text = recognizer.recognize_sphinx(audio)
-        print(f"📝 Recognized Text: {text}")
+        print(f"Recognized Text: {text}")
 
         # Save note
         filename = f"notes/note_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
         with open(filename, "w") as file:
             file.write(text)
 
-        print(f"✅ Note saved as: {filename}")
+        print(f"Note saved as: {filename}")
 
     except sr.UnknownValueError:
-        print("❌ Could not understand audio.")
+        print("Could not understand audio.")
     except Exception as e:
-        print(f"⚠️ Error: {e}")
+        print(f"Error: {e}")
 
 def show_all_notes():
-    print("\n📂 Saved Notes:")
+    print("\n Saved Notes:")
     for file in os.listdir("notes"):
         print(" -", file)
 
@@ -41,11 +41,11 @@ def read_note():
     path = f"notes/{fname}"
 
     if not os.path.exists(path):
-        print("❌ File not found.")
+        print(" File not found.")
         return
 
     with open(path, "r") as file:
-        print("\n📄 Note Content:")
+        print("\n Note Content:")
         print(file.read())
 
 def main():
@@ -65,10 +65,10 @@ def main():
         elif choice == "3":
             read_note()
         elif choice == "4":
-            print("🚪 Exiting...")
+            print("Exiting...")
             break
         else:
-            print("❌ Invalid option. Try again.")
+            print("Invalid option. Try again.")
 
 if __name__ == "__main__":
     main()
